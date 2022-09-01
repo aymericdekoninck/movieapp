@@ -53,15 +53,17 @@ class MovieDetailViewController: UIViewController {
     func updateUI(with movieDetailItem: MovieDetailItem) {
             DispatchQueue.main.async {
                 self.movieTitle.text = movieDetailItem.title
-                self.movieSummary.text = movieDetailItem.description
+                self.movieSummary.text = movieDetailItem.description ?? ""
                 self.status.text = movieDetailItem.status
                 self.score.text = String(movieDetailItem.score)
-                MovieController.shared.fetchImage(url: URL(string: "https://image.tmdb.org/t/p/w200" + movieDetailItem.backdrop)!)
+                if let url = movieDetailItem.backdrop{
+                MovieController.shared.fetchImage(url: URL(string: "https://image.tmdb.org/t/p/w200" + url)!)
                    { (image) in
                     guard let image = image else { return }
                     DispatchQueue.main.async {
                         self.posterImageView.image = image
                     }
+                }
                 }
             }
         }

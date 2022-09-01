@@ -5,10 +5,10 @@ import Foundation
 struct MovieDetailItem: Codable {
     
     var title: String
-    var description: String
+    var description: String?
     var score: Double
     var status: String
-    var backdrop: String
+    var backdrop: String?
     
     enum CodingKeys: String, CodingKey{
         case title
